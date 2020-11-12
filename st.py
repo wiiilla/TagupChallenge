@@ -25,6 +25,9 @@ basemap = alt.Chart(alt.topo_feature(manhattan_geojson, 'features')).mark_geosha
 
 
 # Layout Content
+st.write('### TagUp Data Viz Technical Challenge')
+st.write('Use sidebar to navigate')
+
 if menu == 'Compare probability of failure':
     # Make compare map
     ## Calculate difference in probability of failure by two timestamps of user choice
@@ -67,7 +70,6 @@ if menu == 'Compare probability of failure':
     st.altair_chart(compare_map)
 
 elif menu == 'Monitor probability of failure':
-
     # Make monitor map with Altair date slider
     hazard_stacked = hazard.melt(id_vars=['reference', 'longitude', 'latitude'],
                                 value_vars=timestamps,
@@ -111,4 +113,7 @@ elif menu == 'Monitor probability of failure':
     st.altair_chart(monitor_map)
 
 else:
-    st.write('# my article')
+    md_file = open("Readme.md", "r")
+    content = md_file.read()
+    md_file.close()
+    st.markdown(content, unsafe_allow_html=True)
